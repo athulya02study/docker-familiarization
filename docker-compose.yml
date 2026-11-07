@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .                 # build an image from the Dockerfile above(beacus this . is indciates thae path of Dockerfile)
+    ports:
+      - "5000:5000"          # host port : container port
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine    # ready-made image, no Dockerfile needed
+    volumes:
+      - redisdata:/data      # keeps the counter after restarts
+
+volumes:
+  redisdata:
